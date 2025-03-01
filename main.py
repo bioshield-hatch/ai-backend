@@ -114,8 +114,10 @@ def secure_upload():
 def files():
     res = requests.get('http://127.0.0.1:8090/api/collections/files/records',
                        headers={'Authorization': session['token']})
+    file_list = json.loads(res.text)
+    print(res.text)
 
-    return render_template('files', files=json.loads(res.text))
+    return render_template('files.html', files=file_list['items'])
 
 
 @app.route('/download_file/<string:file_id>', methods=['GET'])

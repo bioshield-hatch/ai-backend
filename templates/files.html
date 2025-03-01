@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+       This is mainly to show you how it works. The things in curly braces are variables that are passed through from the code.
+       https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application
+    -->
+    <div>
+        {% for file in files %}
+        <div id=" {{ file['id'] }} " style="border: 3px solid; padding: 10px; margin: 10px">
+            <a href="download_file/{{ file['id'] }}">
+                <p>{{ file['name'] }}</p>
+                <p>{{ "something else?" }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
