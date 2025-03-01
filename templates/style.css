@@ -1,0 +1,36 @@
+
+/* grid setup */
+.grid-container{
+    display: grid;
+    grid-template-areas: 
+    "head head head head"
+    "nav nav nav nav"
+    "m1 m1 m2 m2"
+    "m1 m1 m3 m3";
+}
+
+.grid-sec{
+    padding: 10px;
+    border: solid black 1px;
+    margin: 5px;
+}
+
+/* section organization */
+#g1{
+    grid-area: head;
+}
+
+#g2{
+    grid-area: nav;
+}
+
+#g3{
+    grid-area: m1;
+}
+#g4{
+    grid-area: m2;
+}
+
+#g5{
+    grid-area: m3;
+}
