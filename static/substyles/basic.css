@@ -35,3 +35,8 @@ body {
   bottom: -3px;
   left: -70px;
 }
+
+/*files.html*/
+.entry{
+  background-color: var(--mainbg);
+}
