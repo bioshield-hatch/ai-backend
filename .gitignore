@@ -1,5 +1,7 @@
 pb/
 vir (10017).jpg
-uploads/
+
 images/
 results/
+__pycache__/
+
