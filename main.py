@@ -3,7 +3,7 @@ from functools import wraps
 import requests
 import json
 
-from flask import Flask, request, render_template, flash, redirect, url_for, session, send_from_directory
+from flask import Flask, request, render_template, flash, redirect, url_for, session, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 from wtforms import Form, StringField, PasswordField, validators
 
@@ -64,6 +64,7 @@ def login():
         if 'record' in login_data:
             session['logged_in'] = True
             session['name'] = login_data['record']['name']
+            session['id'] = login_data['record']['id']
             session['token'] = login_data['token']
 
             print('PASS')
@@ -96,7 +97,7 @@ def secure_upload():
             res = requests.post('http://127.0.0.1:8090/api/collections/files/records',
                                 headers={'Authorization': session['token']},
                                 files={'file': file},
-                                data={'name': file.filename})
+                                data={'name': file.filename, 'allowed_users': session['id']})
             print(res.text)
 
             if res.status_code == 200:
@@ -121,10 +122,15 @@ def files():
 @is_logged_in
 def download_file(file_id):
     res = requests.get('http://127.0.0.1:8090/api/collections/files/records/' + str(file_id),
-                       auth=session['token'])
-    filedata = json.loads(res.text)
+                       headers={'Authorization': session['token']})
+    file_info = json.loads(res.text)
+    print(file_info)
 
-    return send_from_directory('', filedata.file)
+    if 'file' in file_info:
+        return redirect('http://127.0.0.1:8090/api/files/files/' + file_id + '/' + file_info['file'])
+    else:
+        flash('File not found')
+        return redirect(url_for('files'))
 
 
 @app.route('/diagnose_plant', methods=['GET', 'POST'])
