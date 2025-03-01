@@ -29,11 +29,19 @@ body {
 }
 
 /*design stuff*/
-#lilyotv{
+#lilyotv1{
   position: absolute;
   z-index: 1;
   bottom: -50px;
   right: -50px;
+}
+
+#lilyotv2{
+  position: absolute;
+  z-index: 1;
+  bottom: -50px;
+  left: -50px;
+  transform: scaleX(-1);
 }
 
 /*files.html*/
