@@ -19,8 +19,7 @@
         {% for file in files %}
         <div class="entry" id=" {{ file['id'] }} ">
           <a href="download_file/{{ file['id'] }}">
-            <p>{{ file['name'] }}</p>
-            <p>{{ "something else?" }}</p>
+            <p> {{file['name']}}</p>
           </a>
         </div>
         {% endfor %}

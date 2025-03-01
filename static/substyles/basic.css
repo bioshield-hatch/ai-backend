@@ -47,4 +47,7 @@ body {
 /*files.html*/
 .entry{
   background-color: var(--mainbg);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin : 5px;
 }
