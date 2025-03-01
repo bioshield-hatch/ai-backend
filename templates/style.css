@@ -10,6 +10,21 @@
     --accent2: #7e9381;
 }
 
+/* fonts */
+@font-face{
+    font-family: dmserifdisplay;
+    src: url("/templates/assets/dmserifdisplay.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: opensans;
+    src: url("/templates/assets/opensans.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* grid setup */
 .grid-container{
     display: grid;
