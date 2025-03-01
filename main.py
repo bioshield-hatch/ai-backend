@@ -36,7 +36,7 @@ def is_not_logged_in(f):
     def wrap(*args, **kwargs):
         if 'logged_in' in session:
             flash('You are already logged in!', 'success')
-            return redirect(url_for('login'))
+            return redirect(url_for('secure_upload'))
         else:
             return f(*args, **kwargs)
 
@@ -46,10 +46,6 @@ def is_not_logged_in(f):
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/signup')
-def signup():
-    return render_template('signup.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -80,6 +76,22 @@ def login():
             return render_template('login.html', error=error)
 
     return render_template('login.html')
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+@is_not_logged_in
+def signup():
+    if request.method == 'POST':
+        flash('Please contact an Administrator to create an account.', 'error')
+    return render_template('signup.html')
+
+
+@app.route('/logout', methods=['GET'])
+@is_logged_in
+def logout():
+    session.clear()
+    flash('You are now logged out.', 'success')
+    return redirect(url_for('login'))
 
 
 @app.route('/secure_upload', methods=['GET', 'POST'])

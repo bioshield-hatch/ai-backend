@@ -13,6 +13,7 @@
       <!-- header -->
       <div class="grid-sec" id="g1">
         <h1>BioShield Research Tool</h1>
+        {% include 'includes/_messages.html' %}
         <div id="account">
           <a href="{{ url_for('login') }}"><button>Log In</button></a>
           <a href="{{ url_for('signup') }}"><button>Sign Up</button></a>

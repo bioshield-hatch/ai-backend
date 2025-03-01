@@ -6,7 +6,7 @@
     <title>BioShield Secure Upload</title>
     <link href="/static/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/static/substyles/basic.css" rel="stylesheet" type="text/css" media="all" />
-  </head>
+</head>
 
 <body>
     <div class="lcontainer">
@@ -22,12 +22,17 @@
 
     </div>
     {% for user in users %}
-    <div id="{{ user.id }}">
+    <div>
         <p>{{ user.name }}</p>
-        <p>{{ user.pgp_pubkey }}</p>
+        <p id="{{ user.id }}">{{ user.pgp_pubkey }}</p>
+        <button onclick="navigator.clipboard.writeText(document.querySelector('#{{user.id}}').innerHTML)">Copy</button>
+
     </div>
     {% endfor %}
-
-
 </body>
+<script>
+    function Copy(pubkey) {
+        navigator.clipboard.writeText(pubkey)
+    }
+</script>
 </html>
