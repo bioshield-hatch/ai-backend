@@ -1,62 +1,82 @@
 /* color variables */
-:root{
-    --mainbg: #d8e2d9;
-    --secbg: #f0f5ea;
-    --heading: #293728;
-    --maintxt: #2f2616;
-    --altxt1: #766347;
-    --altxt2: #9f8c74;
-    --accent1: #c4cec1;
-    --accent2: #7e9381;
+:root {
+  --mainbg: #d8e2d9;
+  --secbg: #f0f5ea;
+  --heading: #293728;
+  --maintxt: #2f2616;
+  --altxt1: #766347;
+  --altxt2: #9f8c74;
+  --accent1: #c4cec1;
+  --accent2: #7e9381;
 }
 
 /* fonts */
-@font-face{
-    font-family: dmserifdisplay;
-    src: url("/templates/assets/dmserifdisplay.ttf");
-    font-weight: normal;
-    font-style: normal;
+@font-face {
+  font-family: dmserifdisplay;
+  src: url("/templates/assets/dmserifdisplay.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
-@font-face{
-    font-family: opensans;
-    src: url("/templates/assets/opensans.ttf");
-    font-weight: normal;
-    font-style: normal;
+@font-face {
+  font-family: opensans;
+  src: url("/templates/assets/opensans.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* grid setup */
-.grid-container{
-    display: grid;
-    grid-template-areas: 
+.grid-container {
+  display: grid;
+  grid-template-areas:
     "head head head head"
     "nav nav nav nav"
     "m1 m1 m2 m2"
     "m1 m1 m3 m3";
 }
 
-.grid-sec{
-    padding: 10px;
-    border: solid black 1px;
-    margin: 5px;
+.grid-sec {
+  padding: 10px;
+  border: solid black 1px;
+  margin: 5px;
 }
 
 /* section organization */
-#g1{
-    grid-area: head;
+#g1 {
+  grid-area: head;
 }
 
-#g2{
-    grid-area: nav;
+#g2 {
+  grid-area: nav;
 }
 
-#g3{
-    grid-area: m1;
+#g3 {
+  grid-area: m1;
 }
-#g4{
-    grid-area: m2;
+#g4 {
+  grid-area: m2;
 }
 
-#g5{
-    grid-area: m3;
+#g5 {
+  grid-area: m3;
+}
+
+/* DESIGN */
+
+/* base */
+html {
+  background-color: var(--mainbg);
+  color: var(--maintxt);
+}
+body {
+  width: 900px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: dmserifdisplay;
 }
