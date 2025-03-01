@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 from tf_utils import predict_image
 
 UPLOAD_FOLDER = 'uploads/'
-ALLOWED_EXTENSIONS = {'png', 'pgp'}
+ALLOWED_EXTENSIONS = {'png', 'pgp', 'gpg'}
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -48,6 +48,9 @@ def index():
     if 'logged_in' in session:
         return render_template('index.html', logged_in=True)
     return render_template('index.html', logged_in=False)
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
