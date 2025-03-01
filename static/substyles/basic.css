@@ -9,6 +9,7 @@ body {
   /*containers*/
   /*small container*/
 .scontainer{
+    position: relative;
     text-align: center;
     padding: 10px;
     margin: 5px;
@@ -25,4 +26,12 @@ body {
   margin-top: 150px;
   background-color: var(--secbg);
   border: 1.5px solid var(--accent1);
+}
+
+/*design stuff*/
+#flower{
+  position: absolute;
+  z-index: 1;
+  bottom: -3px;
+  left: -70px;
 }
