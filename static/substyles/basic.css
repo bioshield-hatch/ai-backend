@@ -29,11 +29,11 @@ body {
 }
 
 /*design stuff*/
-#flower{
+#lilyotv{
   position: absolute;
   z-index: 1;
-  bottom: -3px;
-  left: -70px;
+  bottom: -50px;
+  right: -50px;
 }
 
 /*files.html*/
