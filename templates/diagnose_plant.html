@@ -11,20 +11,19 @@
   <body>
     <!--grid container-->
     <div class="grid-container">
-
       <!--title-->
       <div class="grid-sec" id="g1">
         <h1>Plant Diagnosis</h1>
-        <form method="post" enctype="multipart/form-data">
-          <input type="file" name="file" accept="image/*" />
-          <button type="submit">Upload</button>
-        </form>
+        
       </div>
 
       <!--explanation-->
       <div class="grid-sec" id="g2">
-        <p>when you upload a file it tells you something abt it idk man</p>
-        <a href="{{ url_for('index') }}"><button>Home</button></a>
+        <p>Upload an image file and the AI will tell you.</p>
+        <form method="post" enctype="multipart/form-data">
+          <input type="file" name="file" accept="image/*" />
+          <button type="submit">Upload</button>
+        </form>
       </div>
 
       <!--the ai forms thing idk-->
@@ -34,13 +33,12 @@
         <img src="{{ url_for('static', filename='uploads/' + filename) }}" width="300" />
         <p>{{ label }} ({{ confidence|round(2) }}%)</p>
         {% else %}
-           <p>Waiting for a file...</p>     
+        <p>Waiting for a file...</p>
         {% endif %}
+        <a href="{{ url_for('index') }}"><button>Home</button></a>
+
       </div>
 
-      <div class="grid-sec" id="g4">
-        
-      </div>
     </div>
   </body>
 </html>
