@@ -17,8 +17,8 @@ def predict_image(filepath):
     arayythingy /= 255.0
     predictthingy = model.predict(arayythingy)
     predicted_class_index = np.argmax(predictthingy)
-    guh = labels[predicted_class_index]
-    guh2 = predictthingy[0][predicted_class_index]
-    return guh, guh2
+    label = labels[predicted_class_index]
+    likelihood = predictthingy[0][predicted_class_index]
+    return label, likelihood
 
 

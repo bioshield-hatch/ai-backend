@@ -29,13 +29,11 @@
       </div>
     </div>
 
-    <!--
-    tf-move
- main
 
+    <!--if the file is uploaded, show the image and the diagnosis-->
     {% if filename %}
         <img src="{{ url_for('static', filename='uploads/' + filename) }}" width="300">
         <p>{{ label }} ({{ confidence|round(2) }}%)</p>
-    {% endif %}-->
+    {% endif %}
   </body>
 </html>

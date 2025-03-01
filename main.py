@@ -145,10 +145,10 @@ def diagnose_plant():
     if request.method == "POST":
         file = request.files.get("file")
         filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        filepath = os.path.join("static", app.config["UPLOAD_FOLDER"], filename)
         file.save(filepath)
-        guh, guh2 = predict_image(filepath)
-        return render_template("diagnose_plant.html", filename=filename, label=guh, confidence=guh2 * 100)
+        label, likelihood = predict_image(filepath)
+        return render_template("diagnose_plant.html", filename=filename, label=label, confidence=likelihood * 100)
     return render_template("diagnose_plant.html", filename=None, label=None, confidence=None)
 
 
