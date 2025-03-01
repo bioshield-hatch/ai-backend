@@ -81,6 +81,7 @@ def login():
 @is_logged_in
 def secure_upload():
     if request.method == 'POST':
+        print(request.files)
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -93,9 +94,10 @@ def secure_upload():
 
         if file and allowed_file(file.filename):
             res = requests.post('http://127.0.0.1:8090/api/collections/files/records',
-                                auth=session['token'],
+                                headers={'Authorization': session['token']},
                                 files={'file': file},
                                 data={'name': file.filename})
+            print(res.text)
 
             if res.status_code == 200:
                 flash('File uploaded!')
@@ -109,7 +111,8 @@ def secure_upload():
 @app.route('/files', methods=['GET'])
 @is_logged_in
 def files():
-    res = requests.get('http://127.0.0.1:8090/api/collections/files/records', auth=session['token'])
+    res = requests.get('http://127.0.0.1:8090/api/collections/files/records',
+                       headers={'Authorization': session['token']})
 
     return render_template('files', files=json.loads(res.text))
 

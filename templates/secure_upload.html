@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>sec upl</title>
-    <link href="/templates/style.css" rel="stylesheet" type="text/css" media="all" />
-  </head>
+    <link href="/templates/style.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
 
-  <body>
-    <input type="file" id="file" name="avatar" />
-  </body>
+<body>
+    <div>
+        {% include 'includes/_messages.html' %}
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" id="file" name="file"/>
+        <button type="submit">Submit</button>
+    </form>
+</body>
 </html>
