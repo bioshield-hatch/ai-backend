@@ -1,3 +1,14 @@
+/* color variables */
+:root{
+    --mainbg: #d8e2d9;
+    --secbg: #f0f5ea;
+    --heading: #293728;
+    --maintxt: #2f2616;
+    --altxt1: #766347;
+    --altxt2: #9f8c74;
+    --accent1: #c4cec1;
+    --accent2: #7e9381;
+}
 
 /* grid setup */
 .grid-container{
