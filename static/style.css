@@ -15,7 +15,7 @@
 /*header text font*/
 @font-face {
   font-family: dmserifdisplay;
-  src: url("/templates/assets/dmserifdisplay.ttf");
+  src: url("/static/assets/dmserifdisplay.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -23,7 +23,7 @@
 /*body text font*/
 @font-face {
   font-family: opensans;
-  src: url("/templates/assets/opensans.ttf");
+  src: url("/static/assets/opensans.ttf");
   font-weight: normal;
   font-style: normal;
 }

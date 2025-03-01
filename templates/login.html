@@ -24,8 +24,8 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <br>
-      <button onclick="location.href='/templates/signup.html';">Sign Up</button>
-      <button onclick="location.href='/templates/index.html';">Home</button>
+      <a href="{{ url_for('signup') }}"><button>Sign Up</button></a>
+      <a href="{{ url_for('index') }}"><button>Home</button></a>
     </div>
   </body>
 </html>
