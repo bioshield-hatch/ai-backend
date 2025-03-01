@@ -37,8 +37,9 @@
 
 .grid-sec {
   padding: 10px;
-  border: solid black 1px;
   margin: 5px;
+  background-color: var(--secbg);
+  border: 1.5px solid var(--accent1);
 }
 
 /* section organization */
@@ -48,6 +49,7 @@
 
 #g2 {
   grid-area: nav;
+text-align: right;
 }
 
 #g3 {
@@ -79,4 +81,13 @@ h1,
 h2,
 h3 {
   font-family: dmserifdisplay;
+}
+
+/* specific grid stuff */
+#account{
+    text-align: right;
+}
+
+button{
+    font-family: opensans;
 }
