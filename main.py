@@ -5,12 +5,12 @@ import json
 
 from flask import Flask, request, render_template, flash, redirect, url_for, session
 from werkzeug.utils import secure_filename
-# from tf_utils import predict_image
+from tf_utils import predict_image
 
 UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'png', 'pgp'}
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -46,6 +46,10 @@ def is_not_logged_in(f):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -135,17 +139,17 @@ def download_file(file_id):
         return redirect(url_for('files'))
 
 
-# @app.route('/diagnose_plant', methods=['GET', 'POST'])
-# @is_logged_in
-# def diagnose_plant():
-#     if request.method == "POST":
-#         file = request.files.get("file")
-#         filename = secure_filename(file.filename)
-#         filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-#         file.save(filepath)
-#         guh, guh2 = predict_image(filepath)
-#         return render_template("diagnose_plant.html", filename=filename, label=guh, confidence=guh2 * 100)
-#     return render_template("diagnose_plant.html", filename=None, label=None, confidence=None)
+@app.route('/diagnose_plant', methods=['GET', 'POST'])
+@is_logged_in
+def diagnose_plant():
+    if request.method == "POST":
+        file = request.files.get("file")
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        file.save(filepath)
+        guh, guh2 = predict_image(filepath)
+        return render_template("diagnose_plant.html", filename=filename, label=guh, confidence=guh2 * 100)
+    return render_template("diagnose_plant.html", filename=None, label=None, confidence=None)
 
 
 if __name__ == '__main__':
