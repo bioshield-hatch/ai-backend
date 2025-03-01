@@ -18,8 +18,12 @@
       <!-- navigation bar-->
       <div class="grid-sec" id="g2">
         <div id="account">
-          <a href="{{ url_for('login') }}"><button>Log In</button></a>
-          <a href="{{ url_for('signup') }}"><button>Sign Up</button></a>
+          {% if logged_in %}
+            <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+          {% else %}
+            <a href="{{ url_for('login') }}"><button>Login</button></a>
+            <a href="{{ url_for('signup') }}"><button>Sign Up</button></a>
+          {% endif %}
         </div>
       </div>
       <!--misc area 1 (tall left box)-->
