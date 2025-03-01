@@ -36,7 +36,7 @@ def is_not_logged_in(f):
     def wrap(*args, **kwargs):
         if 'logged_in' in session:
             flash('You are already logged in!', 'success')
-            return redirect(url_for('secure_upload'))
+            return redirect(url_for('index'))
         else:
             return f(*args, **kwargs)
 
@@ -70,7 +70,7 @@ def login():
             session['token'] = login_data['token']
 
             print('PASS')
-            return redirect(url_for('secure_upload'))
+            return redirect(url_for('index'))
 
         else:
             print('FAIL - INCORRECT PASSWORD')

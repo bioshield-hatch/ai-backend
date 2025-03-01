@@ -83,3 +83,18 @@ button:hover {
   color: var(--maintxt);
 }
 
+/*animation*/
+@keyframes loadfade {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.fadein {
+  animation: 1.3s loadfade;
+}
