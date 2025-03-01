@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BioShield Secure Upload</title>
     <link href="/static/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/static/substyles/basic.css" rel="stylesheet" type="text/css" media="all" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="lcontainer">
-        <h1>Secure Upload</h1>
-        <!-- no fuckin idea what this is but i'll leave it :p -->
-        {% include 'includes/_messages.html' %}
-    <form method="post" enctype="multipart/form-data">
-            <input type="file" id="file" name="file"/>
-            <button type="submit">Submit</button>
-        </form>
-        <br>
-        <a href="{{ url_for('index') }}"><button>Home</button></a>
-        <a href="{{ url_for('files') }}"><button>Files</button></a>
+      <h1>Secure Upload</h1>
+      <!-- no fuckin idea what this is but i'll leave it :p -->
+      {% include 'includes/_messages.html' %}
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" id="file" name="file" />
+        <button type="submit">Submit</button>
+      </form>
+      <br />
+      <a href="{{ url_for('index') }}"><button>Home</button></a>
+      <a href="{{ url_for('files') }}"><button>Files</button></a>
     </div>
-    {% for user in users %}
-    <div>
-        <p>{{ user.name }}</p>
-        <p id="{{ user.id }}">{{ user.pgp_pubkey }}</p>
-        <button onclick="navigator.clipboard.writeText(document.querySelector('#{{user.id}}').innerHTML)">Copy</button>
+    <div class="container">
+        <h1>Encryption Keys</h1>
 
+      {% for user in users %}
+      <div>
+        <p>Name: {{ user.name }}</p>
+        <p class="key" id="{{ user.id }}">{{ user.pgp_pubkey }}</p>
+        <button onclick="navigator.clipboard.writeText(document.querySelector('#{{user.id}}').innerHTML)">Copy</button>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-</body>
-<script>
-    function Copy(pubkey) {
-        navigator.clipboard.writeText(pubkey)
-    }
-</script>
+  </body>
 </html>
