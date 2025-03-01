@@ -9,10 +9,26 @@
   </head>
 
   <body>
-    <form action="/" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" accept="image/*" />
-      <button type="submit">Upload</button>
-    </form>
+    <!--grid container-->
+    <div class="grid-container">
+      <!--title-->
+      <div class="grid-sec" id="g1">
+        <h1>plant diagnosis</h1>
+      </div>
+      <!--explanation-->
+      <div class="grid-sec" id="g2">
+        <p>when you upload a file it tells you something abt it idk man</p>
+        <button onclick="location.href='/templates/index.html';">Home</button>
+      </div>
+      <!--the ai forms thing idk-->
+      <div class="grid-sec" id="g3">
+        <form action="/" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" accept="image/*" />
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+    </div>
+
     <!--
     tf-move
  main
