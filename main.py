@@ -45,7 +45,9 @@ def is_not_logged_in(f):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'logged_in' in session:
+        return render_template('index.html', logged_in=True)
+    return render_template('index.html', logged_in=False)
 
 
 @app.route('/login', methods=['GET', 'POST'])
