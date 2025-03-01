@@ -57,7 +57,6 @@ a:visited {
 
 a:hover {
   color: var(--altxt2);
-  cursor: url("/media/images/favicons/sparklecursor.gif"), auto;
 }
 
 /*highlighted text*/
