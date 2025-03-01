@@ -32,7 +32,8 @@
     "head head head head"
     "nav nav nav nav"
     "m1 m1 m2 m2"
-    "m1 m1 m3 m3";
+    "m1 m1 m3 m3"
+    "foot foot foot foot";
 }
 
 .grid-sec {
@@ -49,18 +50,23 @@
 
 #g2 {
   grid-area: nav;
-text-align: right;
+  text-align: right;
 }
 
 #g3 {
   grid-area: m1;
 }
+
 #g4 {
   grid-area: m2;
 }
 
 #g5 {
   grid-area: m3;
+}
+
+#g6 {
+  grid-area: foot;
 }
 
 /* DESIGN */
@@ -75,6 +81,7 @@ body {
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  font-family: opensans;
 }
 
 h1,
@@ -83,11 +90,24 @@ h3 {
   font-family: dmserifdisplay;
 }
 
-/* specific grid stuff */
-#account{
-    text-align: right;
+a {
+  color: var(--altxt1);
 }
 
-button{
-    font-family: opensans;
+a:visited {
+  color: var(--altxt1);
+}
+
+a:hover {
+  color: var(--altxt2);
+  cursor: url("/media/images/favicons/sparklecursor.gif"), auto;
+}
+
+/* specific grid stuff */
+#account {
+  text-align: right;
+}
+
+button {
+  font-family: opensans;
 }
