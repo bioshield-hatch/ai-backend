@@ -65,10 +65,12 @@ a:hover {
   color: var(--maintxt);
   background: var(--altxt2);
 }
+
 /*buttons*/
 input {
   font-family: opensans;
 }
+
 button {
   font-family: opensans;
   padding: 10px;
@@ -78,10 +80,6 @@ button {
 }
 
 button:hover {
-    background-color: var(--accent2);
-    color: var(--maintxt);
-  }
-  
-button:active {
-   background-color: var(--altxt2);
-  }
+  background-color: var(--accent2);
+  color: var(--maintxt);
+}
