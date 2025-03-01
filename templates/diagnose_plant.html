@@ -7,8 +7,19 @@
     <link href="/templates/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/templates/substyles/diagplant.css" rel="stylesheet" type="text/css" media="all" />
   </head>
+ tf-move
+<body>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
 
-  <body>
-    <input type="file" id="file" name="avatar"/>
-  </body>
+  
+ main
+
+    {% if filename %}
+        <img src="{{ url_for('static', filename='uploads/' + filename) }}" width="300">
+        <p>{{ label }} ({{ confidence|round(2) }}%)</p>
+    {% endif %}
+</body>
 </html>

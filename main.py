@@ -3,9 +3,9 @@ from functools import wraps
 import requests
 import json
 
-from flask import Flask, request, render_template, flash, redirect, url_for, session, send_from_directory, send_file
+from flask import Flask, request, render_template, flash, redirect, url_for, session
 from werkzeug.utils import secure_filename
-from wtforms import Form, StringField, PasswordField, validators
+# from tf_utils import predict_image
 
 UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'png', 'pgp'}
@@ -135,27 +135,17 @@ def download_file(file_id):
         return redirect(url_for('files'))
 
 
-@app.route('/diagnose_plant', methods=['GET', 'POST'])
-@is_logged_in
-def diagnose_plant():
-    if request.method == 'POST':
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-
-        file = request.files['file']
-
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-
-        if not allowed_file(file.filename):
-            flash('Invalid file name')
-            return redirect(url_for('diagnose_plant'))
-
-        #  TODO: Import the needed function from tensorflow to run the AI model on the plant.
-        #   'file' is the image of the plant to use.
-        flash('We are processing the file. If the page times out, go to plant_results to see the results.')
+# @app.route('/diagnose_plant', methods=['GET', 'POST'])
+# @is_logged_in
+# def diagnose_plant():
+#     if request.method == "POST":
+#         file = request.files.get("file")
+#         filename = secure_filename(file.filename)
+#         filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+#         file.save(filepath)
+#         guh, guh2 = predict_image(filepath)
+#         return render_template("diagnose_plant.html", filename=filename, label=guh, confidence=guh2 * 100)
+#     return render_template("diagnose_plant.html", filename=None, label=None, confidence=None)
 
 
 if __name__ == '__main__':
