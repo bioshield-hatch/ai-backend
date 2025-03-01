@@ -11,6 +11,8 @@
 }
 
 /* fonts */
+
+/*header text font*/
 @font-face {
   font-family: dmserifdisplay;
   src: url("/templates/assets/dmserifdisplay.ttf");
@@ -18,51 +20,13 @@
   font-style: normal;
 }
 
+/*body text font*/
 @font-face {
   font-family: opensans;
   src: url("/templates/assets/opensans.ttf");
   font-weight: normal;
   font-style: normal;
 }
-
-/* grid setup */
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "head head head head"
-    "nav nav nav nav"
-    "m1 m1 m2 m2"
-    "m1 m1 m3 m3";
-}
-
-.grid-sec {
-  padding: 10px;
-  margin: 5px;
-  background-color: var(--secbg);
-  border: 1.5px solid var(--accent1);
-}
-
-/* section organization */
-#g1 {
-  grid-area: head;
-}
-
-#g2 {
-  grid-area: nav;
-text-align: right;
-}
-
-#g3 {
-  grid-area: m1;
-}
-#g4 {
-  grid-area: m2;
-}
-
-#g5 {
-  grid-area: m3;
-}
-
 /* DESIGN */
 
 /* base */
@@ -70,24 +34,34 @@ html {
   background-color: var(--mainbg);
   color: var(--maintxt);
 }
+
 body {
-  width: 900px;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  font-family: opensans;
 }
 
+/*headings*/
 h1,
 h2,
 h3 {
   font-family: dmserifdisplay;
 }
 
-/* specific grid stuff */
-#account{
-    text-align: right;
+/*links*/
+a {
+  color: var(--altxt1);
 }
 
-button{
-    font-family: opensans;
+a:visited {
+  color: var(--altxt1);
+}
+
+a:hover {
+  color: var(--altxt2);
+  cursor: url("/media/images/favicons/sparklecursor.gif"), auto;
+}
+
+/*highlighted text*/
+::selection {
+	color: var(--maintxt);
+	background: var(--altxt2);
 }
