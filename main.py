@@ -1,11 +1,22 @@
+import os
 from functools import wraps
+import requests
+import json
 
-from flask import Flask, request, render_template, flash, redirect, url_for, session
-from passlib.hash import sha256_crypt
+from flask import Flask, request, render_template, flash, redirect, url_for, session, send_from_directory
+from werkzeug.utils import secure_filename
 from wtforms import Form, StringField, PasswordField, validators
 
+UPLOAD_FOLDER = 'uploads/'
+ALLOWED_EXTENSIONS = {'png', 'pgp'}
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 def is_logged_in(f):
@@ -43,36 +54,74 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
+        res = requests.get('127.0.0.1:8090/api/collections/users/auth-with-password',
+                           data={'username': username, 'password': password})
+        login_data = json.loads(res.text)
 
+        if login_data.token is not None:
+            session['logged_in'] = True
+            session['username'] = login_data.record.name
+            session['token'] = login_data.token
 
-
-        if result > 0:
-            # Get password
-
-            # names = data['names_ids']
-
-            if sha256_crypt.verify(password, hashed_password):
-                # Set session variables
-                session['logged_in'] = True
-                session['username'] = username
-                # session['names'] = names
-                session['id'] = str(data['id'])
-                print(session['username'])
-                # print(session['names'])
-                print(session['id'])
-                print(session['logged_in'])
-
-                print('PASS')
-                return redirect(url_for('dashboard'))
-            else:
-                print('FAIL - INCORRECT PASSWORD')
-                error = 'Invalid Login. Please check your username and/or password.'
-                return render_template('login.html', error=error)
+            print('PASS')
+            return redirect(url_for('secure_upload'))
 
         else:
-            print('FAIL - NO USER')
+            print('FAIL - INCORRECT PASSWORD')
             error = 'Invalid Login. Please check your username and/or password.'
             return render_template('login.html', error=error)
 
-    # If GET:
     return render_template('login.html')
+
+
+@app.route('/secure_upload', methods=['GET', 'POST'])
+@is_logged_in
+def secure_upload():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+            res = requests.post('127.0.0.1:8090/api/collections/files/records',
+                                auth=session['token'],
+                                files={'file': file},
+                                data={'name': file.filename})
+
+            if res.status_code is 200:
+                flash('File uploaded!')
+                return redirect(url_for('files'))
+
+        flash('Invalid file name')
+        return redirect(url_for('secure_upload'))
+    return render_template('secure_upload')
+
+
+@app.route('/files', methods=['GET'])
+@is_logged_in
+def files():
+    res = requests.get('127.0.0.1:8090/api/collections/files/records', auth=session['token'])
+
+    return render_template('files', files=json.loads(res.text))
+
+
+@app.route('/download_file/<string:file_id>', methods=['GET'])
+@is_logged_in
+def download_file(file_id):
+    res = requests.get('127.0.0.1:8090/api/collections/files/records/' + str(file_id),
+                       auth=session['token'])
+    filedata = json.loads(res.text)
+
+    return send_from_directory('', filedata.file)
+
+
+if __name__ == '__main__':
+    # set_auth(mysql, clear=True)
+    app.secret_key = "aoresntoufo8q934mplaum4b89(#W84lp0923puonwa"
+    app.run(port=7546, host='127.0.0.1', debug=True)
