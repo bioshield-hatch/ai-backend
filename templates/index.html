@@ -14,30 +14,37 @@
       <div class="grid-sec" id="g1">
         <h1>BioShield Research Tool</h1>
         {% include 'includes/_messages.html' %}
+      </div>
+      <!-- navigation bar-->
+      <div class="grid-sec" id="g2">
         <div id="account">
           <a href="{{ url_for('login') }}"><button>Log In</button></a>
           <a href="{{ url_for('signup') }}"><button>Sign Up</button></a>
         </div>
       </div>
-      <!-- navigation bar-->
-      <div class="grid-sec" id="g2">
-        <a href="{{ url_for('diagnose_plant') }}">Plant Diagnosis</a>
-        |
-        <a href="{{ url_for('secure_upload') }}">Secure Upload</a>
-      </div>
       <!--misc area 1 (tall left box)-->
       <div class="grid-sec" id="g3">
-        <h1>welcome</h1>
-        <p>main idea yapping</p>
-        <h2>sub heading</h2>
-        <p>more yapping</p>
+        <h1>About Us</h1>
+        <p>
+          We are all 12th grade students attending Alabama School of Cyber Technology and Engineering. We have combined our varied
+          skills together to create this project!
+        </p>
       </div>
       <!-- misc area 2 (right top box)-->
-      <div class="grid-sec" id="g4">column four</div>
+      <div class="grid-sec" id="g4">
+        <h3>Plant Diagnosis</h3>
+        <p>Visit <a href="{{ url_for('diagnose_plant') }}">Plant Diagnosis</a> to assess the health of your foliage.</p>
+      </div>
       <!-- misc area 3 (right bottom box)-->
-      <div class="grid-sec" id="g5">column five</div>
+      <div class="grid-sec" id="g5">
+        <h3>Secure File Upload</h3>
+        <p>
+          Upload your plant pictures to <a href="{{ url_for('secure_upload') }}">Secure Upload</a> to safely store them for later.
+        </p>
+      </div>
       <div class="grid-sec" id="g6">
         <p>Created by Zamorah Morton, William Mitchell, James Norris, Jacob Schumer, and Eugene Park.</p>
+        <img src="/static/assets/oxeyedaisy.png" id="oxeyed" />
       </div>
     </div>
   </body>
