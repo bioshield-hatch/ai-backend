@@ -9,18 +9,25 @@
   </head>
 
 <body>
-    <div class="lcontainer"> 
+    <div class="lcontainer">
         <h1>Secure Upload</h1>
         <!-- no fuckin idea what this is but i'll leave it :p -->
         {% include 'includes/_messages.html' %}
-        <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
             <input type="file" id="file" name="file"/>
             <button type="submit">Submit</button>
         </form>
         <br>
-        <button onclick="location.href='/templates/index.html';">Home</button>
+        <a href="{{ url_for('index') }}"><button>Home</button></a>
 
     </div>
-    
+    {% for user in users %}
+    <div id="{{ user.id }}">
+        <p>{{ user.name }}</p>
+        <p>{{ user.pgp_pubkey }}</p>
+    </div>
+    {% endfor %}
+
+
 </body>
 </html>

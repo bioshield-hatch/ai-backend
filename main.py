@@ -110,7 +110,12 @@ def secure_upload():
 
         flash('Invalid file name')
         return redirect(url_for('secure_upload'))
-    return render_template('secure_upload.html')
+
+    res = requests.get('http://127.0.0.1:8090/api/collections/users/records',
+                       headers={'Authorization': session['token']})
+    users = json.loads(res.text)
+    print(users)
+    return render_template('secure_upload.html', users=users['items'])
 
 
 @app.route('/files', methods=['GET'])
