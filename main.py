@@ -16,7 +16,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 def is_logged_in(f):
@@ -53,15 +53,18 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        print(request.form)
+        print(username, password)
 
-        res = requests.get('127.0.0.1:8090/api/collections/users/auth-with-password',
-                           data={'username': username, 'password': password})
+        res = requests.post('http://127.0.0.1:8090/api/collections/users/auth-with-password',
+                            data={'identity': username, 'password': password})
         login_data = json.loads(res.text)
+        print(login_data)
 
-        if login_data.token is not None:
+        if 'record' in login_data:
             session['logged_in'] = True
-            session['username'] = login_data.record.name
-            session['token'] = login_data.token
+            session['name'] = login_data['record']['name']
+            session['token'] = login_data['token']
 
             print('PASS')
             return redirect(url_for('secure_upload'))
@@ -89,24 +92,24 @@ def secure_upload():
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
-            res = requests.post('127.0.0.1:8090/api/collections/files/records',
+            res = requests.post('http://127.0.0.1:8090/api/collections/files/records',
                                 auth=session['token'],
                                 files={'file': file},
                                 data={'name': file.filename})
 
-            if res.status_code is 200:
+            if res.status_code == 200:
                 flash('File uploaded!')
                 return redirect(url_for('files'))
 
         flash('Invalid file name')
         return redirect(url_for('secure_upload'))
-    return render_template('secure_upload')
+    return render_template('secure_upload.html')
 
 
 @app.route('/files', methods=['GET'])
 @is_logged_in
 def files():
-    res = requests.get('127.0.0.1:8090/api/collections/files/records', auth=session['token'])
+    res = requests.get('http://127.0.0.1:8090/api/collections/files/records', auth=session['token'])
 
     return render_template('files', files=json.loads(res.text))
 
@@ -114,11 +117,34 @@ def files():
 @app.route('/download_file/<string:file_id>', methods=['GET'])
 @is_logged_in
 def download_file(file_id):
-    res = requests.get('127.0.0.1:8090/api/collections/files/records/' + str(file_id),
+    res = requests.get('http://127.0.0.1:8090/api/collections/files/records/' + str(file_id),
                        auth=session['token'])
     filedata = json.loads(res.text)
 
     return send_from_directory('', filedata.file)
+
+
+@app.route('/diagnose_plant', methods=['GET', 'POST'])
+@is_logged_in
+def diagnose_plant():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+
+        if not allowed_file(file.filename):
+            flash('Invalid file name')
+            return redirect(url_for('diagnose_plant'))
+
+        #  TODO: Import the needed function from tensorflow to run the AI model on the plant.
+        #   'file' is the image of the plant to use.
+        flash('We are processing the file. If the page times out, go to plant_results to see the results.')
 
 
 if __name__ == '__main__':
