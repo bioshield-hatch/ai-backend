@@ -48,10 +48,14 @@ def index():
     if 'logged_in' in session:
         return render_template('index.html', logged_in=True)
     return render_template('index.html', logged_in=False)
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
+@app.route('/yippee')
+def yippee():
+    return render_template('yippee.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
