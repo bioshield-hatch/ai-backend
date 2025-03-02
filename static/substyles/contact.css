@@ -1,0 +1,57 @@
+/*page alignment*/
+body {
+  width: 1000px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main {
+  padding: 10px;
+  margin: 5px;
+  background-color: var(--secbg);
+  border: 1.5px solid var(--accent1);
+  text-align: center;
+}
+
+/* grid setup */
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "p1 p2"
+    "p3 p4"
+    "p5 p6";
+}
+
+.member {
+  padding: 10px;
+  margin: 5px;
+  background-color: var(--secbg);
+  border: 1.5px solid var(--accent1);
+}
+
+img{
+    width: 200px;
+    height: 200px;
+}
+
+/* section organization */
+#g1 {
+  grid-area: p1;
+}
+
+#g2 {
+  grid-area: p2;
+}
+
+#g3 {
+  grid-area: p3;
+}
+
+#g4 {
+  grid-area: p4;
+}
+
+#g5 {
+  grid-area: p5;
+}

@@ -4,17 +4,49 @@
     <meta charset="UTF-8" />
     <title>Uploaded Files</title>
     <link href="/static/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/static/substyles/basic.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/substyles/contact.css" rel="stylesheet" type="text/css" media="all" />
   </head>
   <body>
-    <!--
-       This is mainly to show you how it works. The things in curly braces are variables that are passed through from the code.
-       https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application
-    -->
-    <div class="lcontainer">
-        <h1>Our Team</h1>
-        <a href="{{ url_for('index') }}"><button>Home</button></a>
+    <div class="main">
+      <h1>Contact</h1>
+      <div class="grid-container">
+        <div class="member" id="g1">
+          <img src="/static/assets/morton.jpeg" />
+          <h3>Zamorah Morton</h3>
+          <p>silly quote</p>
+        </div>
 
+        <div class="member" id="g2">
+          <img src="/static/assets/mitchell.jpg" />
+          <h3>William Mitchell</h3>
+          <p>silly quote</p>
+        </div>
+
+        <div class="member" id="g3">
+          <img src="/static/assets/norris.jpg" />
+          <h3>James Norris</h3>
+          <p>silly quote</p>
+        </div>
+
+        <div class="member" id="g4">
+          <img src="/static/assets/shumer.jpg" />
+          <h3>Jacob Schumer</h3>
+          <p>silly quote</p>
+        </div>
+
+        <div class="member" id="g5">
+          <img src="/static/assets/park.png" />
+          <h3>Eugene Park</h3>
+          <p>silly quote</p>
+        </div>
+
+        <div class="member" id="g6">
+          <img src="/static/assets/dazzle.jpg" />
+          <h3>Dazzle</h3>
+          <p>silly quote</p>
+        </div>
+      </div>
+      <a href="{{ url_for('index') }}"><button>Home</button></a>
     </div>
   </body>
 </html>
