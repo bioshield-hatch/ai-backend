@@ -4,9 +4,20 @@ body {
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
-.main {
+/* grid setup */
+.grid-container {
+    padding-left: 30px;
+  display: grid;
+  grid-template-areas:
+    "p1 p2 p3"
+    "p4 p5 p6";
+}
+
+.member {
+  width: 250px;
   padding: 10px;
   margin: 5px;
   background-color: var(--secbg);
@@ -14,25 +25,9 @@ body {
   text-align: center;
 }
 
-/* grid setup */
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "p1 p2"
-    "p3 p4"
-    "p5 p6";
-}
-
-.member {
-  padding: 10px;
-  margin: 5px;
-  background-color: var(--secbg);
-  border: 1.5px solid var(--accent1);
-}
-
-img{
-    width: 200px;
-    height: 200px;
+img {
+  width: 200px;
+  height: 200px;
 }
 
 /* section organization */
